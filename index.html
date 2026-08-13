@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#08100f">
   <meta name="description" content="Chandrashekhar Reddy — AI enthusiast exploring intelligent tools, automation, and emerging technology.">
   <title>Chandrashekhar Reddy</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -129,24 +130,23 @@
     .avatar {
       position: relative;
       z-index: 2;
-      display: grid;
-      place-items: center;
+      overflow: hidden;
       width: 78px;
       height: 78px;
       border: 1px solid rgba(184, 249, 133, 0.34);
-      border-radius: 25px;
-      color: #eaffdc;
-      background:
-        linear-gradient(145deg, rgba(184, 249, 133, 0.18), rgba(96, 231, 197, 0.05)),
-        #13201d;
+      border-radius: 50%;
+      background: #050707;
       box-shadow:
         0 0 0 8px rgba(184, 249, 133, 0.035),
         0 18px 40px -16px rgba(96, 231, 197, 0.45),
         0 1px 0 rgba(255, 255, 255, 0.14) inset;
-      font-family: var(--mono);
-      font-size: 24px;
-      font-weight: 600;
-      letter-spacing: -0.05em;
+    }
+
+    .avatar img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .orbit {
@@ -285,15 +285,21 @@
       border: 1px solid var(--tile-edge);
       border-radius: 17px;
       color: var(--ink);
+      text-decoration: none;
       background: var(--tile);
       box-shadow: 0 1px 0 rgba(255, 255, 255, 0.025) inset;
       transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
     }
 
     .link-row:hover {
-      border-color: rgba(184, 249, 133, 0.16);
-      background: rgba(255, 255, 255, 0.06);
-      transform: translateY(-1px);
+      border-color: rgba(184, 249, 133, 0.28);
+      background: rgba(184, 249, 133, 0.065);
+      transform: translateY(-2px);
+    }
+
+    .link-row:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 3px;
     }
 
     .link-mark {
@@ -305,14 +311,20 @@
       border-radius: 13px;
       color: var(--lime);
       background: rgba(184, 249, 133, 0.055);
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 600;
+    }
+
+    .brand-icon {
+      width: 19px;
+      height: 19px;
+    }
+
+    .brand-icon path {
+      fill: var(--lime);
     }
 
     .link-copy {
-      display: grid;
-      gap: 3px;
+      display: flex;
+      align-items: center;
     }
 
     .link-copy strong {
@@ -321,21 +333,23 @@
       letter-spacing: -0.01em;
     }
 
-    .link-copy small {
-      color: var(--faint);
-      font-family: var(--mono);
-      font-size: 9px;
+    .link-arrow {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(184, 249, 133, 0.1);
+      border-radius: 50%;
+      color: #879994;
+      background: rgba(255, 255, 255, 0.025);
+      font-size: 13px;
+      transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
     }
 
-    .coming-soon {
-      padding: 5px 7px;
-      border-radius: 999px;
-      color: #7e918c;
-      background: rgba(255, 255, 255, 0.035);
-      font-family: var(--mono);
-      font-size: 8px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .link-row:hover .link-arrow {
+      color: var(--lime);
+      border-color: rgba(184, 249, 133, 0.24);
+      transform: translate(1px, -1px);
     }
 
     footer {
@@ -428,10 +442,10 @@
       <div class="card-accent" aria-hidden="true"></div>
 
       <header class="profile-header">
-        <div class="avatar-stage" aria-label="Chandrashekhar Reddy initials">
+        <div class="avatar-stage">
           <div class="orbit orbit-one" aria-hidden="true"><span></span></div>
           <div class="orbit orbit-two" aria-hidden="true"><span></span></div>
-          <div class="avatar">CR</div>
+          <div class="avatar"><img src="favicon.svg" alt="Chandrashekhar Reddy silhouette"></div>
         </div>
 
         <div class="eyebrow">
@@ -452,29 +466,36 @@
 
       <div class="divider" aria-hidden="true"><span></span></div>
 
-      <!-- Send your real profile links to ChatGPT and these rows can be activated for you. -->
-      <div class="links" aria-label="Social links coming soon">
-        <div class="link-row" aria-disabled="true">
-          <span class="link-mark" aria-hidden="true">in</span>
-          <span class="link-copy"><strong>LinkedIn</strong><small>Profile link coming soon</small></span>
-          <span class="coming-soon">Soon</span>
-        </div>
-        <div class="link-row" aria-disabled="true">
-          <span class="link-mark" aria-hidden="true">GH</span>
-          <span class="link-copy"><strong>GitHub</strong><small>Profile link coming soon</small></span>
-          <span class="coming-soon">Soon</span>
-        </div>
-        <div class="link-row" aria-disabled="true">
-          <span class="link-mark" aria-hidden="true">IG</span>
-          <span class="link-copy"><strong>Instagram</strong><small>Profile link coming soon</small></span>
-          <span class="coming-soon">Soon</span>
-        </div>
-        <div class="link-row" aria-disabled="true">
-          <span class="link-mark" aria-hidden="true">@</span>
-          <span class="link-copy"><strong>Email</strong><small>Contact link coming soon</small></span>
-          <span class="coming-soon">Soon</span>
-        </div>
-      </div>
+      <nav class="links" aria-label="Connect with Chandrashekhar Reddy">
+        <a class="link-row" href="https://www.linkedin.com/in/dcr6174" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile in a new tab">
+          <span class="link-mark" aria-hidden="true">
+            <svg class="brand-icon" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg>
+          </span>
+          <span class="link-copy"><strong>LinkedIn</strong></span>
+          <span class="link-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="link-row" href="https://github.com/dcr6174" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile in a new tab">
+          <span class="link-mark" aria-hidden="true">
+            <svg class="brand-icon" viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.3-.51-1.47.11-3.06 0 0 .96-.31 3.16 1.18a10.9 10.9 0 0 1 5.75 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.76.11 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.05.78 2.13v3.16c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"></path></svg>
+          </span>
+          <span class="link-copy"><strong>GitHub</strong></span>
+          <span class="link-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="link-row" href="https://x.com/dcr6174" target="_blank" rel="noopener noreferrer" aria-label="Open X ( Twitter ) profile in a new tab">
+          <span class="link-mark" aria-hidden="true">
+            <svg class="brand-icon" viewBox="0 0 24 24"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.22-6.82-5.96 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.12z"></path></svg>
+          </span>
+          <span class="link-copy"><strong>X ( Twitter )</strong></span>
+          <span class="link-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="link-row" href="mailto:dcr6174@gmail.com" aria-label="Send email to dcr6174@gmail.com">
+          <span class="link-mark" aria-hidden="true">
+            <svg class="brand-icon" viewBox="0 0 24 24"><path d="M24 5.46v13.91c0 .9-.73 1.63-1.64 1.63h-3.82v-9.27L12 16.64l-6.55-4.91V21H1.64C.73 21 0 20.27 0 19.37V5.46c0-2.03 2.31-3.18 3.93-1.97l1.52 1.15L12 9.55l6.54-4.91 1.53-1.15C21.69 2.28 24 3.43 24 5.46z"></path></svg>
+          </span>
+          <span class="link-copy"><strong>Email</strong></span>
+          <span class="link-arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
 
       <footer>
         <span class="footer-line" aria-hidden="true"></span>
