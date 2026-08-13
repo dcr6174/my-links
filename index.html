@@ -29,13 +29,14 @@
     * { box-sizing: border-box; }
 
     html {
-      min-height: 100%;
+      height: 100%;
       background: var(--night);
     }
 
     body {
-      min-height: 100%;
+      height: 100%;
       margin: 0;
+      overflow: hidden;
       color: var(--ink);
       background:
         radial-gradient(circle at 22% 12%, rgba(96, 231, 197, 0.12), transparent 30rem),
@@ -47,11 +48,11 @@
 
     .page-shell {
       position: relative;
-      min-height: 100svh;
+      height: 100svh;
       display: grid;
       place-items: center;
       overflow: hidden;
-      padding: 48px 20px 32px;
+      padding: clamp(12px, 2.4vh, 24px) 20px;
       isolation: isolate;
     }
 
@@ -90,9 +91,17 @@
 
     .profile-card {
       position: relative;
-      width: min(100%, 430px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+      grid-template-areas:
+        "header divider links"
+        "topics divider links"
+        "footer footer footer";
+      column-gap: 34px;
+      align-items: center;
+      width: min(100%, 820px);
       overflow: hidden;
-      padding: 40px 32px 26px;
+      padding: 30px 34px 18px;
       border: 1px solid var(--card-edge);
       border-radius: 32px;
       background:
@@ -116,23 +125,26 @@
       box-shadow: 0 0 24px rgba(96, 231, 197, 0.7);
     }
 
-    .profile-header { text-align: center; }
+    .profile-header {
+      grid-area: header;
+      text-align: center;
+    }
 
     .avatar-stage {
       position: relative;
       display: grid;
       place-items: center;
-      width: 114px;
-      height: 114px;
-      margin: 0 auto 26px;
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 16px;
     }
 
     .avatar {
       position: relative;
       z-index: 2;
       overflow: hidden;
-      width: 78px;
-      height: 78px;
+      width: 68px;
+      height: 68px;
       border: 1px solid rgba(184, 249, 133, 0.34);
       border-radius: 50%;
       background: #050707;
@@ -217,7 +229,7 @@
     h1 span { color: var(--lime); }
 
     .role {
-      margin: 13px 0 0;
+      margin: 10px 0 0;
       color: #c1d2cd;
       font-family: var(--mono);
       font-size: 12px;
@@ -226,18 +238,19 @@
 
     .bio {
       max-width: 330px;
-      margin: 17px auto 0;
+      margin: 12px auto 0;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.65;
     }
 
     .topic-list {
+      grid-area: topics;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 8px;
-      margin-top: 22px;
+      margin-top: 16px;
     }
 
     .topic-list span {
@@ -253,26 +266,29 @@
     }
 
     .divider {
+      grid-area: divider;
       position: relative;
-      height: 1px;
-      margin: 29px 0 21px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.11), transparent);
+      width: 1px;
+      height: 86%;
+      margin: 0;
+      background: linear-gradient(transparent, rgba(255, 255, 255, 0.11), transparent);
     }
 
     .divider span {
       position: absolute;
-      top: -2px;
-      left: 50%;
+      top: 50%;
+      left: -2px;
       width: 5px;
       height: 5px;
       border: 1px solid rgba(184, 249, 133, 0.4);
       background: var(--card);
-      transform: translateX(-50%) rotate(45deg);
+      transform: translateY(-50%) rotate(45deg);
     }
 
     .links {
+      grid-area: links;
       display: grid;
-      gap: 10px;
+      gap: 9px;
     }
 
     .link-row {
@@ -280,7 +296,7 @@
       grid-template-columns: 42px 1fr auto;
       align-items: center;
       gap: 13px;
-      min-height: 64px;
+      min-height: 58px;
       padding: 10px 13px 10px 10px;
       border: 1px solid var(--tile-edge);
       border-radius: 17px;
@@ -353,10 +369,11 @@
     }
 
     footer {
+      grid-area: footer;
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-top: 24px;
+      margin-top: 18px;
     }
 
     footer p {
@@ -377,7 +394,7 @@
 
     .page-note {
       position: absolute;
-      bottom: 12px;
+      bottom: max(5px, env(safe-area-inset-bottom));
       left: 50%;
       margin: 0;
       color: rgba(188, 210, 204, 0.35);
@@ -398,30 +415,175 @@
       to { transform: rotate(360deg); }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 720px) {
       .page-shell {
-        place-items: start center;
-        padding: 20px 13px 35px;
+        padding: 8px 10px;
       }
 
       .profile-card {
-        padding: 32px 20px 22px;
-        border-radius: 26px;
+        display: block;
+        width: min(100%, 430px);
+        padding: 16px 18px 12px;
+        border-radius: 24px;
       }
 
-      .avatar-stage { margin-bottom: 20px; }
-      .divider { margin-top: 25px; }
+      .avatar-stage {
+        width: 74px;
+        height: 74px;
+        margin-bottom: 8px;
+      }
+
+      .avatar {
+        width: 54px;
+        height: 54px;
+        box-shadow:
+          0 0 0 5px rgba(184, 249, 133, 0.035),
+          0 12px 28px -14px rgba(96, 231, 197, 0.45),
+          0 1px 0 rgba(255, 255, 255, 0.14) inset;
+      }
+
+      .orbit-one { inset: 3px; }
+      .orbit-two { inset: 11px; }
+
+      .eyebrow {
+        gap: 6px;
+        margin-bottom: 6px;
+        font-size: 8px;
+      }
+
+      h1 {
+        font-size: clamp(24px, 7.8vw, 30px);
+        line-height: 1;
+      }
+
+      .role {
+        margin-top: 7px;
+        font-size: 10px;
+      }
+
+      .bio {
+        max-width: 350px;
+        margin-top: 7px;
+        font-size: 11px;
+        line-height: 1.4;
+      }
+
+      .topic-list {
+        gap: 5px;
+        margin-top: 9px;
+      }
+
+      .topic-list span {
+        padding: 4px 7px;
+        font-size: 7.5px;
+      }
+
+      .divider {
+        width: auto;
+        height: 1px;
+        margin: 10px 0 8px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.11), transparent);
+      }
+
+      .divider span {
+        top: -2px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+      }
+
+      .links { gap: 6px; }
+
+      .link-row {
+        grid-template-columns: 32px 1fr auto;
+        gap: 9px;
+        min-height: 43px;
+        padding: 5px 9px 5px 6px;
+        border-radius: 13px;
+      }
+
+      .link-mark {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+      }
+
+      .brand-icon {
+        width: 15px;
+        height: 15px;
+      }
+
+      .link-copy strong { font-size: 11px; }
+
+      .link-arrow {
+        width: 23px;
+        height: 23px;
+        font-size: 11px;
+      }
+
+      footer {
+        gap: 7px;
+        margin-top: 9px;
+      }
+
+      footer p { font-size: 6.5px; }
       .page-note { display: none; }
     }
 
-    @media (max-height: 790px) and (min-width: 481px) {
-      .page-shell {
-        place-items: start center;
-        padding-top: 22px;
+    @media (max-height: 620px) and (max-width: 720px) {
+      .profile-card {
+        padding-top: 10px;
+        padding-bottom: 8px;
       }
 
-      .profile-card { padding-top: 28px; }
-      .avatar-stage { margin-bottom: 16px; }
+      .avatar-stage {
+        width: 62px;
+        height: 62px;
+        margin-bottom: 5px;
+      }
+
+      .avatar {
+        width: 46px;
+        height: 46px;
+      }
+
+      .bio { font-size: 10px; }
+
+      .topic-list { margin-top: 6px; }
+
+      .divider { margin: 7px 0 6px; }
+
+      .links { gap: 4px; }
+
+      .link-row { min-height: 39px; }
+
+      footer { margin-top: 6px; }
+    }
+
+    @media (min-width: 560px) and (max-height: 520px) {
+      .profile-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+        grid-template-areas:
+          "header divider links"
+          "topics divider links"
+          "footer footer footer";
+        column-gap: 22px;
+        width: min(100%, 760px);
+        padding: 14px 24px 10px;
+      }
+
+      .divider {
+        width: 1px;
+        height: 84%;
+        margin: 0;
+        background: linear-gradient(transparent, rgba(255, 255, 255, 0.11), transparent);
+      }
+
+      .divider span {
+        top: 50%;
+        left: -2px;
+        transform: translateY(-50%) rotate(45deg);
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
