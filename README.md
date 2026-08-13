@@ -4,7 +4,7 @@ Personal links page for **Chandrashekhar Reddy**, an AI enthusiast and curious b
 
 ## Live Website
 
-🌐 [Visit my website](https://dcr6174.github.io)
+🌐 [Visit my website](https://dcr6174.github.io/my-links/)
 
 ## Connect
 
